@@ -10,6 +10,6 @@ async function getWeather(city) {
     const response = await fetch(apiURL);
     const data = await response.json();
 
-    document.querySelector('.temperature').innerHTML = `${Math.round(data.main.temp)}°F`;
-    document.querySelector('.humidity').innerHTML = `${Math.round(data.main.humidity)}%`;
+    document.querySelector('.temperature').innerHTML = `<h2>Temperature:${Math.round(data.main.temp)}°F</h2>`;
+    document.querySelector('.humidity').innerHTML = `<h2>Humidity: ${Math.round(data.main.humidity)}%</h2>`;
 }
