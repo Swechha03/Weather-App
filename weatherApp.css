@@ -54,7 +54,17 @@
     }
 
     .weather-display {
-      display: flex;
+      display: none;
+      justify-content: space-between;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 15px;
+      border-radius: 10px;
+      color: white;
+      font-size: 18px;
+    }
+
+    .wrong-city-error {
+      display: none;
       justify-content: space-between;
       background-color: rgba(255, 255, 255, 0.2);
       padding: 15px;

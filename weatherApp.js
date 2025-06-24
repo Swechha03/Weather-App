@@ -2,6 +2,7 @@ import { apiKey } from './config.js'
 
 document.querySelector('.search-button').addEventListener('click', () => {
     let city = document.querySelector('.search-city').value;
+
     getWeather(city);
 });
 
@@ -10,9 +11,20 @@ async function getWeather(city) {
     const response = await fetch(apiURL);
     const data = await response.json();
 
-    getWeatherIcon(data);
-    document.querySelector('.temperature').innerHTML = `<h2>Temperature:${Math.round(data.main.temp)}°F</h2>`;
-    document.querySelector('.humidity').innerHTML = `<h2>Humidity: ${Math.round(data.main.humidity)}%</h2>`;
+    if (response.status === 404) {
+        document.querySelector('.wrong-city-error').style.display = 'block';
+        document.querySelector('.weather-display').style.display = 'none';
+    }
+    else {
+        document.querySelector('.weather-display').style.display = 'flex';
+        document.querySelector('.wrong-city-error').style.display = 'none';
+        getWeatherIcon(data);
+
+        document.querySelector('.temperature').innerHTML = `<h2>Temperature:${Math.round(data.main.temp)}°F</h2>`;
+        document.querySelector('.humidity').innerHTML = `<h2>Humidity: ${Math.round(data.main.humidity)}%</h2>`;
+
+    }
+
 }
 
 function getWeatherIcon(data) {
